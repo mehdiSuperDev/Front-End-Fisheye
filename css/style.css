@@ -29,12 +29,12 @@ h1 {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
+
+    margin-bottom: 50px;
 }
 
 .photographer_section article {
-    justify-self: center;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
 }
@@ -42,6 +42,8 @@ h1 {
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
+
+    margin-bottom: -10px;
 }
 
 .photographer_section article img {
@@ -51,12 +53,17 @@ h1 {
     object-fit: cover;
 }
 
-.photographer_section article > p:first-child {
+.photographer_section article > p {
+    margin-bottom: -10px;
+}
+
+
+.photographer_section article p:first-of-type {
     color: #901C1C;
     font-size: 13px;
 }
 
-.photographer_section article p:last-child {
+.photographer_section article p:last-of-type {
     color: #757575;
     font-size: 9px;
 }
