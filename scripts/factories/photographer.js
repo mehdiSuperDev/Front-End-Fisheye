@@ -17,11 +17,18 @@ function photographerFactory(data) {
         
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
+        img.setAttribute("alt", "");
+        //lier le focus [img-h2]
+        img.setAttribute("tabindex", 0);
+        img.setAttribute("role", "img");
 
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         article.appendChild(img);
         article.appendChild(h2);
+
+        //lier le focus [img-h2]
+        img.setAttribute("tabindex", 0);
 
         //Créer la localisation
         const p_localisation = document.createElement('p');
