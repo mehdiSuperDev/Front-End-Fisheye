@@ -1,8 +1,8 @@
 function photographerFactory(data) {
-    const { 
+    const {
         name,
         city,
-        country, 
+        country,
         portrait,
         tagline,
         price
@@ -13,22 +13,21 @@ function photographerFactory(data) {
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
-        const article = document.createElement( 'article' );
-        
+        const article = document.createElement('article');
+
 
         //Création lien vers page photographe
         const link = document.createElement('a');
         link.setAttribute("href", "photographer.html");
+        link.setAttribute("tabindex", 0);
+        link.setAttribute("title", name);
 
-
-        const img = document.createElement( 'img' );
+        const img = document.createElement('img');
         img.setAttribute("src", picture);
         img.setAttribute("alt", "");
-        //lier le focus [img-h2]
-        img.setAttribute("tabindex", 0);
         img.setAttribute("role", "img");
 
-        const h2 = document.createElement( 'h2' );
+        const h2 = document.createElement('h2');
         h2.textContent = name;
 
         //Créer img/h2 cliquable
@@ -36,9 +35,6 @@ function photographerFactory(data) {
         link.appendChild(h2);
 
         article.appendChild(link);
-
-        //lier le focus [img-h2]
-        img.setAttribute("tabindex", 0);
 
         //Créer la localisation
         const p_localisation = document.createElement('p');
