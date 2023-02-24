@@ -5,12 +5,25 @@ function photographerFactory(data) {
         country,
         portrait,
         tagline,
-        price
+        price,
+        id
     } = data;
 
     console.log(`photographerFactory: {data}`);
 
     const picture = `assets/photographers/${portrait}`;
+
+    function urlFactory(id) {
+        let url = new URL("photographer.html", window.location.href);
+        let params = new URLSearchParams(url.search);
+
+        params.set("id", id);
+        url.search = params.toString();
+
+        console.log(`url: ${url.toString()}`);
+
+        return url.toString();
+    }
 
     function getUserCardDOM() {
         const article = document.createElement('article');
@@ -18,7 +31,7 @@ function photographerFactory(data) {
 
         //Création lien vers page photographe
         const link = document.createElement('a');
-        link.setAttribute("href", "photographer.html");
+        link.setAttribute("href", urlFactory(id));
         link.setAttribute("tabindex", 0);
         link.setAttribute("title", name);
 
