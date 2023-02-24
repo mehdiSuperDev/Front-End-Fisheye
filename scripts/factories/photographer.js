@@ -15,6 +15,12 @@ function photographerFactory(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         
+
+        //Création lien vers page photographe
+        const link = document.createElement('a');
+        link.setAttribute("href", "photographer.html");
+
+
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", "");
@@ -24,8 +30,12 @@ function photographerFactory(data) {
 
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
-        article.appendChild(img);
-        article.appendChild(h2);
+
+        //Créer img/h2 cliquable
+        link.appendChild(img);
+        link.appendChild(h2);
+
+        article.appendChild(link);
 
         //lier le focus [img-h2]
         img.setAttribute("tabindex", 0);
