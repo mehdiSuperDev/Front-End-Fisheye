@@ -32,7 +32,11 @@ function photographerFactory(data) {
         //Création lien vers page photographe
         const link = document.createElement('a');
         link.setAttribute("href", urlFactory(id));
+
         link.setAttribute("tabindex", 0);
+        //description TA
+        link.setAttribute(`aria-label", "Accèdez à la page du photographe ${name}}`);
+        //info bulle
         link.setAttribute("title", name);
 
         const img = document.createElement('img');
