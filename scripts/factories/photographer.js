@@ -17,7 +17,7 @@ function photographerFactory(data) {
         let url = new URL("photographer.html", window.location.href);
         let params = new URLSearchParams(url.search);
 
-        params.set("id", id);
+        params.set("photographerId", id);
         url.search = params.toString();
 
         console.log(`url: ${url.toString()}`);
@@ -35,7 +35,7 @@ function photographerFactory(data) {
 
         link.setAttribute("tabindex", 0);
         //description TA
-        link.setAttribute(`aria-label", "Accèdez à la page du photographe ${name}}`);
+        link.setAttribute("aria-label", `Accèdez à la page du photographe ${name}`);
         //info bulle
         link.setAttribute("title", name);
 
