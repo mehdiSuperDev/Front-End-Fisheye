@@ -14,6 +14,21 @@ async function getPhotographers() {
 }
 //
 
+async function fillHeader(photographer) {
+    const name = document.querySelector(".photograph-header h2");
+    name.textContent = photographer.name;
+
+    const localisation = document.querySelector(".photograph-header p:first-of-type");
+    localisation.textContent = `${photographer.country}, ${photographer.city}`;
+
+    const quote = document.querySelector(".photograph-header p:last-of-type");
+    quote.textContent = photographer.tagline;
+
+    const img = document.querySelector(".photograph-header img");
+    const picture = `assets/photographers/${photographer.portrait}`;
+    img.setAttribute("src", picture);
+}
+
 async function init() {
     const photographers = await getPhotographers();
 
@@ -28,8 +43,9 @@ async function init() {
     const index = photographers.findIndex(isCurrentId);
 
     console.log(`index: ${index}`);
-
     console.log(`name photographer: ${photographers[index].name}`);
+
+    fillHeader(photographers[index]);
 };
 
 init();
