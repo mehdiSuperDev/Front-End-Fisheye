@@ -77,15 +77,23 @@ function mediaFactory(data) {
 
             return img;
         } else {
-            const video = document.createElement("video");
-            video.setAttribute("src", `assets/images/${video}`);
-            video.setAttribute("controls", "controls");
-            video.setAttribute("autoplay", "autoplay");
-            video.setAttribute("loop", "loop");
-            video.setAttribute("muted", "muted");
-            video.setAttribute("playsinline", "playsinline");
+            // créer l'élément video
+            const video_e = document.createElement('video');
 
-            return video;
+            console.dir(`video: ${video}`);
+            video_e.setAttribute("src", `assets/images/${video}`);
+            video_e.controls = true;
+
+            // ajouter la source mp4
+            const sourceMp4 = document.createElement('source');
+            sourceMp4.type = 'video/mp4';
+            video_e.appendChild(sourceMp4);
+
+            // ajouter le message d'erreur
+            const errorMessage = document.createTextNode('Your browser does not support HTML video.');
+            video_e.appendChild(errorMessage);
+
+            return video_e;
         }
     }
     
