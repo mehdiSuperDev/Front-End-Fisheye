@@ -62,14 +62,32 @@ function mediaFactory(data) {
         photographerId,
         title,
         image,
+        video,
         likes,
         date,
         price
     } = data;
 
-    const picture = `assets/photographers/${image}`;
+    function getMediaElement() {
+        if (image != undefined) {
+            const img = document.createElement("img");
+            img.setAttribute("src", `assets/images/${image}`);
+            img.setAttribute("alt", title);
+            img.setAttribute("role", "img");
 
-    console.log(`pictures: ${picture}`);
+            return img;
+        } else {
+            const video = document.createElement("video");
+            video.setAttribute("src", `assets/images/${video}`);
+            video.setAttribute("controls", "controls");
+            video.setAttribute("autoplay", "autoplay");
+            video.setAttribute("loop", "loop");
+            video.setAttribute("muted", "muted");
+            video.setAttribute("playsinline", "playsinline");
+
+            return video;
+        }
+    }
     
     function getMediaCardDOM() {
         const userCardDOM = document.createElement("article");
@@ -77,10 +95,8 @@ function mediaFactory(data) {
         userCardDOM.setAttribute("aria-label", `${title}`);
         userCardDOM.setAttribute("title", "title");
 
-        const img = document.createElement("img");
-        img.setAttribute("src", picture);
-        img.setAttribute("alt", "");
-        img.setAttribute("role", "img");
+        // recuperer element renvoyer par la fonction getMediaElement
+        const mediaElement = getMediaElement();
 
         const sectionFooter = document.createElement("div");
         sectionFooter.setAttribute("class", "medias_section__footer");
@@ -94,7 +110,7 @@ function mediaFactory(data) {
         sectionFooter.appendChild(p_title);
         sectionFooter.appendChild(p_likes);
 
-        userCardDOM.appendChild(img);
+        userCardDOM.appendChild(mediaElement);
         userCardDOM.appendChild(sectionFooter);
 
         return userCardDOM;

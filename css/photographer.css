@@ -61,6 +61,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 95px;
+
     margin-top: 100px;
     margin-left: 100px;
     margin-right: 100px;
@@ -69,11 +70,16 @@
 .medias_section article {
     color:#901C1C;
     font-size: 16px;
+
+    margin-bottom: -90px;
 }
 
-.medias_section article img {
+.medias_section article img,
+.medias_section article video {
     height: 300px;
     width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .medias_section__footer {
