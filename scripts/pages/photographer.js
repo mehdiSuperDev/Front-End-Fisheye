@@ -30,9 +30,6 @@ async function getMedias(photographerId) {
             const medias = data.media;
             console.log(`medias: ${medias}`);
 
-            const p = medias.filter(element => element.photographerId == photographerId);
-            console.log(`p: ${p}`);
-
             return medias.filter(element => element.photographerId == photographerId);
         })
         .catch(error => console.log(error));
@@ -58,14 +55,10 @@ async function fillHeader(photographer) {
 
 function mediaFactory(data) {
     const {
-        id,
-        photographerId,
         title,
         image,
         video,
         likes,
-        date,
-        price
     } = data;
 
     function getMediaElement() {
@@ -81,6 +74,7 @@ function mediaFactory(data) {
             const video_e = document.createElement('video');
 
             console.dir(`video: ${video}`);
+
             video_e.setAttribute("src", `assets/images/${video}`);
             video_e.controls = true;
 
@@ -112,11 +106,15 @@ function mediaFactory(data) {
         const p_title = document.createElement("p");
         p_title.textContent = title;
         
-        const p_likes = document.createElement("p");
-        p_likes.textContent = `${likes} ♥️`;
+        const b_likes = document.createElement("button");
+        b_likes.textContent = `${likes} ❤️`;
+
+        b_likes.addEventListener('click', () => {
+            b_likes.textContent = `${likes + 1} ❤️`;
+        })
 
         sectionFooter.appendChild(p_title);
-        sectionFooter.appendChild(p_likes);
+        sectionFooter.appendChild(b_likes);
 
         userCardDOM.appendChild(mediaElement);
         userCardDOM.appendChild(sectionFooter);

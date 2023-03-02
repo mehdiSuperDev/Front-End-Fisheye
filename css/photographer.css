@@ -82,6 +82,14 @@
     border-radius: 5px;
 }
 
+.medias_section button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    color:#901C1C;
+}
+
 .medias_section__footer {
     display: flex;
     flex-direction: row;
