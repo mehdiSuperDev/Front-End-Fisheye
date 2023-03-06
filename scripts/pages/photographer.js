@@ -19,35 +19,24 @@ function displayMediaElementsArray() {
 //Doublon avec méthodes contactForm.js
 
 
-
-function openLightboxModal() {
-    const body = document.querySelector("body");
-    document.getElementById("lightbox").style.display = "flex";
-    body.style.overflow = "hidden";
-
-    //test
-    displayMediaElementsArray();
-}
-
-function closeLightboxModal() {
-    console.log("closeModal clicked");
-
-    const body = document.querySelector("body");
-    document.getElementById("lightbox").style.display = "none";
-    body.style.overflow = "auto";
-}
-
 var slideIndex = 0;
-function slowSlides(n) {
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
     var i;
     var slides = document.getElementsByClassName("slide");
-    console.log(`slides: ${slides.length}`);
+    // console.log(`slides: ${slides.length}`);
     if (n > slides.length) { slideIndex = 0 };
     for(i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
-    // slides[slideIndex].style.display = "block";
-    slides[n].style.display = "block";
+    slides[slideIndex].style.display = "block";
 }
 
 function createSlides() {
@@ -72,6 +61,28 @@ function createSlides() {
         console.dir(`LBC: ${lightboxContent}`);
         lightboxContent.appendChild(div);
     }
+}
+
+function openLightboxModal() {
+    console.log(`slideIndex: ${slideIndex}`);
+    // showSlides(slideIndex);
+
+    const body = document.querySelector("body");
+    document.getElementById("lightbox").style.display = "flex";
+    body.style.overflow = "hidden";
+
+
+
+    //test
+    // displayMediaElementsArray();
+}
+
+function closeLightboxModal() {
+    console.log("closeModal clicked");
+
+    const body = document.querySelector("body");
+    document.getElementById("lightbox").style.display = "none";
+    body.style.overflow = "auto";
 }
 
 //END Foncitons liées à la lightbox
@@ -144,21 +155,30 @@ function mediaFactory(data) {
             img.setAttribute("alt", title);
             img.setAttribute("role", "img");
 
+            mediaElements.push(img.cloneNode(true));
+            //recuperer l'index du dernier element
+            const lastIndex = mediaElements.length - 1;
+
             img.addEventListener('click', function(event) {
                 console.log("click on image");
+                // slideIndex = lastIndex;
+                currentSlide(lastIndex);
                 openLightboxModal();
             });
-            mediaElements.push(img.cloneNode(true));
 
             return img;
         } else {
             // créer l'élément video
             const video_e = document.createElement('video');
+
+            mediaElements.push(video_e.cloneNode(true));
+            const lastIndex = mediaElements.length - 1;
+
             video_e.addEventListener('click', function(event) {
                 console.log("video on image");
+                currentSlide(lastIndex);
                 openLightboxModal();
             });
-            mediaElements.push(video_e.cloneNode(true));
 
             console.dir(`video: ${video}`);
 
@@ -251,9 +271,9 @@ async function init() {
 
     //Ajout slide
     createSlides();
-    slowSlides(2);
+    // showSlides(2);
 
-    displayMediaElementsArray();
+    // displayMediaElementsArray();
 };
 
 init();
