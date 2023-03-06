@@ -165,6 +165,24 @@ form input {
 
 /* LightBOX */
 
+
+/* Close button REPETITIF */
+.close {
+    position: absolute;
+    top:10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
 #lightbox {
     display: none;
     position: fixed;
@@ -184,8 +202,8 @@ form input {
 .lightbox-content {
     background-color: white;
     position: relative;
-    /* padding: 0;
-    margin: auto; */
     width: 90%;
+    max-width: 1050px;
     height: 80%;
+    max-height: 900px;
 }

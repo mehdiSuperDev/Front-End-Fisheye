@@ -10,18 +10,68 @@
 // "price": 55
 
 //Foncitons liées à la lightbox
+let mediaElements = [];
+
+function displayMediaElementsArray() {
+    mediaElements.forEach(m => console.dir(m));
+}
 
 //Doublon avec méthodes contactForm.js
-function openModal() {
+
+
+
+function openLightboxModal() {
     const body = document.querySelector("body");
     document.getElementById("lightbox").style.display = "flex";
     body.style.overflow = "hidden";
+
+    //test
+    displayMediaElementsArray();
 }
 
-function closeModal() {
+function closeLightboxModal() {
+    console.log("closeModal clicked");
+
     const body = document.querySelector("body");
     document.getElementById("lightbox").style.display = "none";
     body.style.overflow = "auto";
+}
+
+var slideIndex = 0;
+function slowSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("slide");
+    console.log(`slides: ${slides.length}`);
+    if (n > slides.length) { slideIndex = 0 };
+    for(i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    // slides[slideIndex].style.display = "block";
+    slides[n].style.display = "block";
+}
+
+function createSlides() {
+    for (const element of mediaElements) {
+        const div = document.createElement("div");
+        div.onclick = function() {
+            "clicked !!!";
+        };
+        div.classList.add("slide");
+
+        div.style.width = "100%";
+        div.style.height = "100%";
+
+        //Ajouter element a div
+        element.style.objectFit = "cover";
+        element.style.width = "100%";
+        element.style.maxWidth = "100%";
+        element.style.height = "100%";
+        div.appendChild(element);
+
+        const lightboxContent = document.querySelector(".lightbox-content");
+        console.dir(`LBC: ${lightboxContent}`);
+        lightboxContent.appendChild(div);
+    }
 }
 
 //END Foncitons liées à la lightbox
@@ -50,7 +100,10 @@ async function getMedias(photographerId) {
         .then(response => response.json())
         .then(data => {
             const medias = data.media;
-            console.log(`medias: ${medias}`);
+            
+            // console.dir(`medias: ${medias}`);
+            medias.forEach(m => console.dir(m));
+
 
             return medias.filter(element => element.photographerId == photographerId);
         })
@@ -75,6 +128,7 @@ async function fillHeader(photographer) {
     img.setAttribute("src", picture);
 }
 
+
 function mediaFactory(data) {
     const {
         title,
@@ -92,8 +146,9 @@ function mediaFactory(data) {
 
             img.addEventListener('click', function(event) {
                 console.log("click on image");
-                openModal();
+                openLightboxModal();
             });
+            mediaElements.push(img.cloneNode(true));
 
             return img;
         } else {
@@ -101,8 +156,9 @@ function mediaFactory(data) {
             const video_e = document.createElement('video');
             video_e.addEventListener('click', function(event) {
                 console.log("video on image");
-                openModal();
+                openLightboxModal();
             });
+            mediaElements.push(video_e.cloneNode(true));
 
             console.dir(`video: ${video}`);
 
@@ -192,6 +248,12 @@ async function init() {
     console.log(`medias: ${medias}`);
 
     displayMedias(medias);
+
+    //Ajout slide
+    createSlides();
+    slowSlides(2);
+
+    displayMediaElementsArray();
 };
 
 init();
