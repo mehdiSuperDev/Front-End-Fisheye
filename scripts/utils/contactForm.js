@@ -18,3 +18,8 @@ function closeModal() {
 
     body.style.overflow = "auto";
 }
+
+
+//Titre Modal Dynamique
+const modal_title = document.querySelector("header h2");
+modal_title.textContent = 'Contactez-moi NOM PRENOM';

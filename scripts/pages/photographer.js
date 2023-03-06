@@ -9,7 +9,8 @@
 // "date": "2019-11-25",
 // "price": 55
 
-//Comment utiliser la fonction du index.js directemment ?
+
+// Comment utiliser la fonction du index.js directemment ?
 async function getPhotographers() {
     //Récupération des données depuis le json et affichage dans la console.
     return fetch('data/photographers.json')
@@ -21,7 +22,11 @@ async function getPhotographers() {
         })
         .catch(error => console.log(error));
 }
-//
+
+
+//Erreur d'exécution
+// import { PhotographerService } from "./photographerService.js";
+// import PhotographerService from './photographerService.js';
 
 async function getMedias(photographerId) {
     return fetch('data/photographers.json')
@@ -90,7 +95,7 @@ function mediaFactory(data) {
             return video_e;
         }
     }
-    
+
     function getMediaCardDOM() {
         const userCardDOM = document.createElement("article");
         userCardDOM.setAttribute("tabindex", 0);
@@ -105,7 +110,7 @@ function mediaFactory(data) {
 
         const p_title = document.createElement("p");
         p_title.textContent = title;
-        
+
         const b_likes = document.createElement("button");
         b_likes.textContent = `${likes} ❤️`;
 
@@ -128,7 +133,7 @@ async function displayMedias(medias) {
     const mediasSection = document.querySelector(".medias_section");
 
     console.log(`mediaSection: ${mediasSection}`);
-    
+
     medias.forEach((media) => {
         const mediaModel = mediaFactory(media);
         const mediaCardDom = mediaModel.getMediaCardDOM();
@@ -138,6 +143,8 @@ async function displayMedias(medias) {
 
 async function init() {
     const photographers = await getPhotographers();
+    // let photographerService = new PhotographerService();
+    // const photographers = await photographerService.getPhotographers();
 
     //Récupérer l'id en paramètre
     const params = new URLSearchParams(window.location.search);

@@ -134,6 +134,8 @@
     text-align: center;
 }
 
+/* FORM */
+
 form {
     display: flex;
     width: 100%;
@@ -159,4 +161,18 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+/* LightBOX */
+
+#lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 90%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
