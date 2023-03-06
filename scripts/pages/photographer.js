@@ -71,7 +71,7 @@ function openLightboxModal() {
     document.getElementById("lightbox").style.display = "flex";
     body.style.overflow = "hidden";
 
-
+    document.addEventListener("keydown", listenArrowKeys);
 
     //test
     // displayMediaElementsArray();
@@ -83,9 +83,21 @@ function closeLightboxModal() {
     const body = document.querySelector("body");
     document.getElementById("lightbox").style.display = "none";
     body.style.overflow = "auto";
+
+    document.removeEventListener("keydown", listenArrowKeys);
 }
 
 //END Foncitons liées à la lightbox
+
+//
+function listenArrowKeys(event) {
+    if (event.keyCode === 37) {
+        plusSlides(-1);
+    } else if (event.keyCode === 39) {
+        plusSlides(1);
+    }
+}
+
 
 
 // Comment utiliser la fonction du index.js directemment ?
