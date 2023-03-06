@@ -9,6 +9,23 @@
 // "date": "2019-11-25",
 // "price": 55
 
+//Foncitons liées à la lightbox
+
+//Doublon avec méthodes contactForm.js
+function openModal() {
+    const body = document.querySelector("body");
+    document.getElementById("lightbox").style.display = "flex";
+    body.style.overflow = "hidden";
+}
+
+function closeModal() {
+    const body = document.querySelector("body");
+    document.getElementById("lightbox").style.display = "none";
+    body.style.overflow = "auto";
+}
+
+//END Foncitons liées à la lightbox
+
 
 // Comment utiliser la fonction du index.js directemment ?
 async function getPhotographers() {
@@ -73,10 +90,19 @@ function mediaFactory(data) {
             img.setAttribute("alt", title);
             img.setAttribute("role", "img");
 
+            img.addEventListener('click', function(event) {
+                console.log("click on image");
+                openModal();
+            });
+
             return img;
         } else {
             // créer l'élément video
             const video_e = document.createElement('video');
+            video_e.addEventListener('click', function(event) {
+                console.log("video on image");
+                openModal();
+            });
 
             console.dir(`video: ${video}`);
 
