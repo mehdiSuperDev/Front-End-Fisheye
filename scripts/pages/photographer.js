@@ -74,7 +74,6 @@ function createSlides() {
         div.appendChild(captionContainer);
 
         const lightboxContent = document.querySelector(".lightbox-content");
-        // console.dir(`LBC: ${lightboxContent}`);
         lightboxContent.appendChild(div);
     }
 }
@@ -167,6 +166,29 @@ async function fillHeader(photographer) {
     img.setAttribute("src", picture);
 }
 
+let totalLikesMedia = 0;
+
+function fillMediaSectionInsert(medias) {
+    // const { likes, price } = data;
+    const price = medias[0].price;
+
+    let counter = 0
+    medias.forEach(function(media) {
+        counter += media.likes;
+    });
+    totalLikesMedia = counter;
+
+    const mediaSectionInsert = document.querySelector(".medias_section__insert ");
+    const likes = document.createElement("p");
+    likes.classList.add("likesElement");
+    likes.textContent = `${totalLikesMedia} 🖤`;
+
+    const priceElement = document.createElement("p");
+    priceElement.textContent = `${price}€/ jour`;
+
+    mediaSectionInsert.appendChild(likes);
+    mediaSectionInsert.appendChild(priceElement);
+}
 
 function mediaFactory(data) {
     const {
@@ -243,11 +265,18 @@ function mediaFactory(data) {
         p_title.textContent = title;
 
         const b_likes = document.createElement("button");
+        b_likes.classList.add("button_like");
         b_likes.textContent = `${likes} ❤️`;
 
-        b_likes.addEventListener('click', () => {
-            b_likes.textContent = `${likes + 1} ❤️`;
-        })
+        let isLiked = false;
+        b_likes.addEventListener('click', function() {
+            if (!isLiked) {
+                b_likes.textContent = `${likes + 1} ❤️`;
+                totalLikesMedia++;
+                document.querySelector(".likesElement").textContent = `${totalLikesMedia} ❤️`;
+                isLiked = true;
+            }
+        });
 
         sectionFooter.appendChild(p_title);
         sectionFooter.appendChild(b_likes);
@@ -264,6 +293,8 @@ async function displayMedias(medias) {
     const mediasSection = document.querySelector(".medias_section");
 
     console.log(`mediaSection: ${mediasSection}`);
+
+    fillMediaSectionInsert(medias);
 
     medias.forEach((media) => {
         const mediaModel = mediaFactory(media);
