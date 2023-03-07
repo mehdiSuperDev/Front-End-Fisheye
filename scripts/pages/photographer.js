@@ -198,9 +198,8 @@ function mediaFactory(data) {
         } else {
             // créer l'élément video
             const video_e = document.createElement('video');
+            video_e.setAttribute("src", `assets/images/${video}`);
 
-            mediaElements.push(video_e.cloneNode(true));
-            const lastIndex = mediaElements.length - 1;
 
             video_e.addEventListener('click', function(event) {
                 console.log("video on image");
@@ -210,7 +209,6 @@ function mediaFactory(data) {
 
             console.dir(`video: ${video}`);
 
-            video_e.setAttribute("src", `assets/images/${video}`);
             video_e.controls = true;
 
             // ajouter la source mp4
@@ -221,6 +219,9 @@ function mediaFactory(data) {
             // ajouter le message d'erreur
             const errorMessage = document.createTextNode('Your browser does not support HTML video.');
             video_e.appendChild(errorMessage);
+
+            mediaElements.push(video_e.cloneNode(true));
+            const lastIndex = mediaElements.length - 1;
 
             return video_e;
         }
