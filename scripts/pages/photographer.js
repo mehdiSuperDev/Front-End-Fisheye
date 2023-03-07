@@ -32,19 +32,28 @@ function showSlides(n) {
     var i;
     var slides = document.getElementsByClassName("slide");
     // console.log(`slides: ${slides.length}`);
-    if (n > slides.length) { slideIndex = 0 };
+    if (n > slides.length - 1) { slideIndex = 0 };
+    if (n < 0) { slideIndex = slides.length - 1 };
     for(i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
     slides[slideIndex].style.display = "block";
 }
 
+function setCaptionText(text) {
+    const caption = document.querySelector("#caption");
+    caption.textContent = text;
+}
+
+function createCaptionContainer() {
+    const captionContainer = document.createElement("div");
+    captionContainer.classList.add("caption-container");
+    return captionContainer;
+}
+
 function createSlides() {
     for (const element of mediaElements) {
         const div = document.createElement("div");
-        div.onclick = function() {
-            "clicked !!!";
-        };
         div.classList.add("slide");
 
         div.style.width = "100%";
@@ -53,12 +62,19 @@ function createSlides() {
         //Ajouter element a div
         element.style.objectFit = "cover";
         element.style.width = "100%";
-        element.style.maxWidth = "100%";
+        element.style.maxWidth = "1200px";
         element.style.height = "100%";
+
+        const captionContainer = createCaptionContainer();
+        const caption = document.createElement("p");
+        caption.textContent = element.alt;
+        captionContainer.appendChild(caption);
+
         div.appendChild(element);
+        div.appendChild(captionContainer);
 
         const lightboxContent = document.querySelector(".lightbox-content");
-        console.dir(`LBC: ${lightboxContent}`);
+        // console.dir(`LBC: ${lightboxContent}`);
         lightboxContent.appendChild(div);
     }
 }
@@ -91,9 +107,9 @@ function closeLightboxModal() {
 
 //
 function listenArrowKeys(event) {
-    if (event.keyCode === 37) {
+    if (event.key === "ArrowLeft") {
         plusSlides(-1);
-    } else if (event.keyCode === 39) {
+    } else if (event.key === "ArrowRight") {
         plusSlides(1);
     }
 }

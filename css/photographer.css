@@ -171,7 +171,7 @@ form input {
     position: absolute;
     top:10px;
     right: 25px;
-    font-size: 35px;
+    font-size: 65px;
     font-weight: bold;
 }
 
@@ -208,6 +208,8 @@ form input {
     max-height: 900px;
 }
 
+/* Navigation lightbox */
+
 /* Next & previous buttons */
 .prev,
 .next {
@@ -242,4 +244,14 @@ form input {
 .prev:hover,
 .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption */
+
+.caption-container {
+    color: red;
+    font-size: 24px;
+    padding: 8px 12px;
+    position: absolute;
+    text-align: center;
 }
