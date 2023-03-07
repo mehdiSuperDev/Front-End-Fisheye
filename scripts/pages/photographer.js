@@ -67,7 +67,7 @@ function createSlides() {
 
         const captionContainer = createCaptionContainer();
         const caption = document.createElement("p");
-        caption.textContent = element.alt;
+        caption.textContent = element.alt ?? element.title;
         captionContainer.appendChild(caption);
 
         div.appendChild(element);
@@ -199,7 +199,7 @@ function mediaFactory(data) {
             // créer l'élément video
             const video_e = document.createElement('video');
             video_e.setAttribute("src", `assets/images/${video}`);
-
+            video_e.setAttribute("title", title);
 
             video_e.addEventListener('click', function(event) {
                 console.log("video on image");
