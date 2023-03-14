@@ -57,14 +57,21 @@
 
 /* Media card */
 
-.medias_section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 95px;
+.medias_section__header {
+    display: flex;
+    flex-direction: row;
+}
 
+.medias_section {
     margin-top: 100px;
     margin-left: 100px;
     margin-right: 100px;
+}
+
+.medias_section__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 95px;
 }
 
 .medias_section article {
@@ -97,6 +104,10 @@
 }
 
 .medias_section__insert {
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 95px; */
+
     z-index: 2;
     position: fixed;
     bottom: 0px;
@@ -274,3 +285,9 @@ form input {
     position: absolute;
     text-align: center;
 }
+
+/* Menu */
+
+/* .medias_section__header {
+
+} */

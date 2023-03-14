@@ -114,6 +114,18 @@ function listenArrowKeys(event) {
 }
 
 
+// Menu Option
+
+function listenSelectedOptionMenu() {
+    const menu = document.getElementById("menu");
+    menu.addEventListener("change", () => {
+        const selectedOption = menu.value;
+        console.log(`option: ${selectedOption}`);
+    });
+}
+
+//Fin Menu option
+
 
 // Comment utiliser la fonction du index.js directemment ?
 async function getPhotographers() {
@@ -169,7 +181,6 @@ async function fillHeader(photographer) {
 let totalLikesMedia = 0;
 
 function fillMediaSectionInsert(medias) {
-    // const { likes, price } = data;
     const price = medias[0].price;
 
     let counter = 0
@@ -290,11 +301,11 @@ function mediaFactory(data) {
 }
 
 async function displayMedias(medias) {
-    const mediasSection = document.querySelector(".medias_section");
+    const mediasSection = document.querySelector(".medias_section__body");
 
     console.log(`mediaSection: ${mediasSection}`);
 
-    fillMediaSectionInsert(medias);
+    // fillMediaSectionInsert(medias);
 
     medias.forEach((media) => {
         const mediaModel = mediaFactory(media);
@@ -328,12 +339,12 @@ async function init() {
     console.log(`medias: ${medias}`);
 
     displayMedias(medias);
+    fillMediaSectionInsert(medias);
 
     //Ajout slide
     createSlides();
-    // showSlides(2);
 
-    // displayMediaElementsArray();
+    listenSelectedOptionMenu();
 };
 
 init();
