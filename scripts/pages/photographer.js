@@ -9,6 +9,7 @@
 // "date": "2019-11-25",
 // "price": 55
 
+
 //Foncitons liées à la lightbox
 let mediaElements = [];
 

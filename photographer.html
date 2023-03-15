@@ -9,7 +9,7 @@
   </head>
   <body>
     <header role="banner">
-      <a href="#">
+      <a href="index.html">
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page"/>
       </a>
     </header>
@@ -40,44 +40,38 @@
     </main>
 
     <!-- Modal -->
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+  <div id="contact_modal" role="dialog" aria-labelledby="contact_title" aria-describedby="contact_description">
+    <div class="modal">
+        <header>
+            <h2 id="contact_title">Contactez-moi</h2>
+            <img src="assets/icons/close.svg" alt="Fermer" onclick="closeModal()" tabindex="0" onkeydown="if (event.keyCode === 13) closeModal();" />
         </header>
-				<form>
-					<div>            
-            <label for="surname">Prénom</label>
-            <input type="text" id="surname" name="surname" required>
+        <form>
+            <div id="contact_description">
+                <label for="surname">Prénom</label>
+                <input type="text" id="surname" name="surname" required aria-required="true">
 
-            <label for="name">Nom</label>
-            <input type="text" id="name" name="name" required>
-            
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="message">Votre message</label>
-            <textarea id="message" name="message" required></textarea>
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" required aria-required="true">
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required aria-required="true">
+                
+                <label for="message">Votre message</label>
+                <textarea id="message" name="message" required aria-required="true"></textarea>
+            </div>
+            <button class="send_button" type="submit">Envoyer</button>
+        </form>
+    </div>
+  </div>
 
     <!-- LightBox -->
     <div id="lightbox">
       <span class="close cursor" onclick="closeLightboxModal()">&times;</span>
       <div class="lightbox-content">
-
-
-
       </div>
       <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
       <a class="next" onclick="plusSlides(1)">&#10095;</a>
-      <!-- <div class="caption-container">
-        <p id="caption">TEST</p>
-      </div> -->
     </div>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>

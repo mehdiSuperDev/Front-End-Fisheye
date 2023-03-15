@@ -40,7 +40,7 @@
     object-fit: cover;
 }
 
-.contact_button {
+.contact_button, .send_button {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -173,6 +173,11 @@
     font-size: 64px;
     font-weight: normal;
     text-align: center;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
 }
 
 /* FORM */
