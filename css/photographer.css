@@ -60,6 +60,21 @@
 .medias_section__header {
     display: flex;
     flex-direction: row;
+    gap: 30px;
+    font-size: 18px;
+    padding-bottom: 60px;
+    font-weight: 700;
+}
+
+.medias_section__header #menu {
+    background-color: #901C1C;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    width: 150px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .medias_section {
@@ -104,10 +119,6 @@
 }
 
 .medias_section__insert {
-    /* display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 95px; */
-
     z-index: 2;
     position: fixed;
     bottom: 0px;
@@ -223,8 +234,6 @@ form input {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     overflow: auto;
-
-    /* display: flex; */
     justify-content: center;
     align-items: center;
 }
@@ -285,9 +294,3 @@ form input {
     position: absolute;
     text-align: center;
 }
-
-/* Menu */
-
-/* .medias_section__header {
-
-} */

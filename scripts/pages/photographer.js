@@ -134,7 +134,6 @@ function sortMedia(type) {
     sortedArticles.forEach(article => mediaSection.appendChild(article));
 }
 
-
 // Menu Option
 
 function listenSelectedOptionMenu() {
@@ -330,6 +329,10 @@ async function displayMedias(medias) {
     });
 };
 
+function listenMenuEvent() {
+    listenSelectedOptionMenu();
+}
+
 async function init() {
     const photographers = await getPhotographers();
 
@@ -344,13 +347,12 @@ async function init() {
     fillHeader(photographers[index]);
 
     const medias = await getMedias(photographers[index].id);
-
-    console.log(`medias: ${medias}`);
+    sortMedia('popularité');
 
     displayMedias(medias);
     fillMediaSectionInsert(medias);
 
-    listenSelectedOptionMenu();
+    listenMenuEvent();
 
     //Ajout slide pour la lightbox
     createSlides();
