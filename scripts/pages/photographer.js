@@ -31,7 +31,6 @@ function currentSlide(n) {
 function showSlides(n) {
     var i;
     var slides = document.getElementsByClassName("slide");
-    // console.log(`slides: ${slides.length}`);
     if (n > slides.length - 1) { slideIndex = 0 };
     if (n < 0) { slideIndex = slides.length - 1 };
     for(i = 0; i < slides.length; i++) {
@@ -79,17 +78,11 @@ function createSlides() {
 }
 
 function openLightboxModal() {
-    console.log(`slideIndex: ${slideIndex}`);
-    // showSlides(slideIndex);
-
     const body = document.querySelector("body");
     document.getElementById("lightbox").style.display = "flex";
     body.style.overflow = "hidden";
 
     document.addEventListener("keydown", listenArrowKeys);
-
-    //test
-    // displayMediaElementsArray();
 }
 
 function closeLightboxModal() {
@@ -134,7 +127,6 @@ async function getPhotographers() {
         .then(response => response.json())
         .then(data => {
             const photographers = data.photographers;
-            console.log(`Photograhers: ${JSON.stringify(photographers)}`)
             return photographers
         })
         .catch(error => console.log(error));
@@ -151,10 +143,6 @@ async function getMedias(photographerId) {
         .then(data => {
             const medias = data.media;
             
-            // console.dir(`medias: ${medias}`);
-            medias.forEach(m => console.dir(m));
-
-
             return medias.filter(element => element.photographerId == photographerId);
         })
         .catch(error => console.log(error));
@@ -189,7 +177,7 @@ function fillMediaSectionInsert(medias) {
     });
     totalLikesMedia = counter;
 
-    const mediaSectionInsert = document.querySelector(".medias_section__insert ");
+    const mediaSectionInsert = document.querySelector(".medias_section__insert");
     const likes = document.createElement("p");
     likes.classList.add("likesElement");
     likes.textContent = `${totalLikesMedia} 🖤`;
@@ -207,6 +195,7 @@ function mediaFactory(data) {
         image,
         video,
         likes,
+        date,
     } = data;
 
     function getMediaElement() {
@@ -264,7 +253,10 @@ function mediaFactory(data) {
         const userCardDOM = document.createElement("article");
         userCardDOM.setAttribute("tabindex", 0);
         userCardDOM.setAttribute("aria-label", `${title}`);
-        userCardDOM.setAttribute("title", "title");
+        userCardDOM.setAttribute("title", `${title}`);
+
+        userCardDOM.setAttribute("date", date);
+        userCardDOM.setAttribute("likes", likes);
 
         // recuperer element renvoyer par la fonction getMediaElement
         const mediaElement = getMediaElement();
@@ -303,10 +295,6 @@ function mediaFactory(data) {
 async function displayMedias(medias) {
     const mediasSection = document.querySelector(".medias_section__body");
 
-    console.log(`mediaSection: ${mediasSection}`);
-
-    // fillMediaSectionInsert(medias);
-
     medias.forEach((media) => {
         const mediaModel = mediaFactory(media);
         const mediaCardDom = mediaModel.getMediaCardDOM();
@@ -316,21 +304,14 @@ async function displayMedias(medias) {
 
 async function init() {
     const photographers = await getPhotographers();
-    // let photographerService = new PhotographerService();
-    // const photographers = await photographerService.getPhotographers();
 
-    //Récupérer l'id en paramètre
+    // Récupérer l'id en paramètre
     const params = new URLSearchParams(window.location.search);
     const id = params.get("photographerId");
-
-    console.log(`id: ${id}`);
 
     const isCurrentId = (element) => element.id == id;
 
     const index = photographers.findIndex(isCurrentId);
-
-    console.log(`index: ${index}`);
-    console.log(`name photographer: ${photographers[index].name}`);
 
     fillHeader(photographers[index]);
 
@@ -341,10 +322,10 @@ async function init() {
     displayMedias(medias);
     fillMediaSectionInsert(medias);
 
-    //Ajout slide
-    createSlides();
-
     listenSelectedOptionMenu();
+
+    //Ajout slide pour la lightbox
+    createSlides();
 };
 
 init();
