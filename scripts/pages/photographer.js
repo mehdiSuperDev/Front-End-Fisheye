@@ -1,5 +1,3 @@
-//Mettre le code JavaScript lié à la page photographer.html
-
 // JSON
 // "id": 75902334,
 // "photographerId": 82,
@@ -12,40 +10,9 @@
 import { initContactForm } from "../utils/contactForm.js";
 import { currentSlide, createSlides, openLightboxModal } from "./lightbox.js";
 import { sortMedia, listenMenuEvent } from "./mediaSort.js";
+import { getPhotographers, getMedias } from "./dataManager.js";
 
 let mediaElements = [];
-
-
-//Fin Menu option
-
-
-// Comment utiliser la fonction du index.js directemment ?
-async function getPhotographers() {
-    //Récupération des données depuis le json et affichage dans la console.
-    return fetch('data/photographers.json')
-        .then(response => response.json())
-        .then(data => {
-            const photographers = data.photographers;
-            return photographers
-        })
-        .catch(error => console.log(error));
-}
-
-
-//Erreur d'exécution
-// import { PhotographerService } from "./photographerService.js";
-// import PhotographerService from './photographerService.js';
-
-async function getMedias(photographerId) {
-    return fetch('data/photographers.json')
-        .then(response => response.json())
-        .then(data => {
-            const medias = data.media;
-            
-            return medias.filter(element => element.photographerId == photographerId);
-        })
-        .catch(error => console.log(error));
-}
 
 async function fillHeader(photographer) {
     const name = document.querySelector(".photograph-header h2");
