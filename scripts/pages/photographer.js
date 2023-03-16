@@ -9,16 +9,9 @@
 // "date": "2019-11-25",
 // "price": 55
 
+import { initContactForm } from "../utils/contactForm.js";
 
 //Foncitons liées à la lightbox
-let mediaElements = [];
-
-function displayMediaElementsArray() {
-    mediaElements.forEach(m => console.dir(m));
-}
-
-//Doublon avec méthodes contactForm.js
-
 
 var slideIndex = 0;
 function plusSlides(n) {
@@ -51,6 +44,7 @@ function createCaptionContainer() {
     return captionContainer;
 }
 
+let mediaElements = [];
 function createSlides() {
     for (const element of mediaElements) {
         const div = document.createElement("div");
@@ -78,12 +72,20 @@ function createSlides() {
     }
 }
 
+function listenLightboxEvent() {
+    document.querySelector(".close.cursor").addEventListener("click", closeLightboxModal);
+    document.querySelector(".prev").addEventListener("click", () => plusSlides(-1));
+    document.querySelector(".next").addEventListener("click", () => plusSlides(1));
+}
+
 function openLightboxModal() {
     const body = document.querySelector("body");
     document.getElementById("lightbox").style.display = "flex";
     body.style.overflow = "hidden";
 
     document.addEventListener("keydown", listenArrowKeys);
+
+    listenLightboxEvent()
 }
 
 function closeLightboxModal() {
@@ -344,10 +346,12 @@ async function init() {
     const isCurrentId = (element) => element.id == id;
 
     const index = photographers.findIndex(isCurrentId);
+    initContactForm(photographers[index].name);
 
     fillHeader(photographers[index]);
 
     const medias = await getMedias(photographers[index].id);
+
     sortMedia('popularité');
 
     displayMedias(medias);
@@ -359,4 +363,4 @@ async function init() {
     createSlides();
 };
 
-init();
+document.addEventListener("DOMContentLoaded", init);
