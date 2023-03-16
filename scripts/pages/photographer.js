@@ -37,7 +37,7 @@ let totalLikesMedia = 0;
 function fillMediaSectionInsert(medias) {
     const price = medias[0].price;
 
-    let counter = 0
+    let counter = 0;
     medias.forEach(function(media) {
         counter += media.likes;
     });
@@ -75,7 +75,7 @@ function mediaFactory(data) {
             //recuperer l'index du dernier element
             const lastIndex = mediaElements.length - 1;
 
-            img.addEventListener('click', function(event) {
+            img.addEventListener("click", function(event) {
                 console.log("click on image");
                 // slideIndex = lastIndex;
                 currentSlide(lastIndex);
@@ -85,11 +85,11 @@ function mediaFactory(data) {
             return img;
         } else {
             // créer l'élément video
-            const video_e = document.createElement('video');
+            const video_e = document.createElement("video");
             video_e.setAttribute("src", `assets/images/${video}`);
             video_e.setAttribute("title", title);
 
-            video_e.addEventListener('click', function(event) {
+            video_e.addEventListener("click", function(event) {
                 console.log("video on image");
                 currentSlide(lastIndex);
                 openLightboxModal();
@@ -100,12 +100,12 @@ function mediaFactory(data) {
             video_e.controls = true;
 
             // ajouter la source mp4
-            const sourceMp4 = document.createElement('source');
-            sourceMp4.type = 'video/mp4';
+            const sourceMp4 = document.createElement("source");
+            sourceMp4.type = "video/mp4";
             video_e.appendChild(sourceMp4);
 
             // ajouter le message d'erreur
-            const errorMessage = document.createTextNode('Your browser does not support HTML video.');
+            const errorMessage = document.createTextNode("Your browser does not support HTML video.");
             video_e.appendChild(errorMessage);
 
             mediaElements.push(video_e.cloneNode(true));
@@ -138,7 +138,7 @@ function mediaFactory(data) {
         b_likes.textContent = `${likes} ❤️`;
 
         let isLiked = false;
-        b_likes.addEventListener('click', function() {
+        b_likes.addEventListener("click", function() {
             if (!isLiked) {
                 b_likes.textContent = `${likes + 1} ❤️`;
                 totalLikesMedia++;
@@ -185,7 +185,7 @@ async function init() {
 
     const medias = await getMedias(photographers[index].id);
 
-    sortMedia('popularité');
+    sortMedia("popularité");
 
     displayMedias(medias);
     fillMediaSectionInsert(medias);
