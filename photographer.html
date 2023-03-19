@@ -66,12 +66,12 @@
   </div>
 
     <!-- LightBox -->
-    <div id="lightbox">
-      <span class="close cursor">&times;</span>
+    <div id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" tabindex="-1">
+      <span class="close cursor" tabindex="0" aria-label="Fermer">&times;</span>
       <div class="lightbox-content">
       </div>
-      <a class="prev">&#10094;</a>
-      <a class="next">&#10095;</a>
+      <button class="prev" tabindex="0" aria-label="Image précédente">&#10094;</button> <!-- Modifié -->
+      <button class="next" tabindex="0" aria-label="Image suivante">&#10095;</button> <!-- Modifié -->
     </div>
     <script type="module" src="/scripts/pages/lightbox.js"></script>
     <script type="module" src="/scripts/pages/photographer.js"></script>

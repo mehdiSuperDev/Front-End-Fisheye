@@ -1,5 +1,7 @@
-var slideIndex = 0;
+const $lightbox = document.getElementById("lightbox");
+let previousActiveElement;
 
+var slideIndex = 0;
 export function plusSlides(n) {
   showSlides(slideIndex += n);
 }
@@ -17,11 +19,6 @@ function showSlides(n) {
         slides[i].style.display = "none";
     }
     slides[slideIndex].style.display = "block";
-}
-
-function setCaptionText(text) {
-    const caption = document.querySelector("#caption");
-    caption.textContent = text;
 }
 
 function createCaptionContainer() {
@@ -63,12 +60,48 @@ function listenLightboxEvent() {
     document.querySelector(".next").addEventListener("click", () => plusSlides(1));
 }
 
+function setInitialFocus() {
+    const closeButton = document.querySelector(".close.cursor");
+    if (closeButton) {
+        closeButton.focus();
+    }
+}
+
+function handleTabKey(event) {
+    if (event.key === "Tab") {
+        event.preventDefault();
+
+        const interactiveElements = [
+            document.querySelector(".close.cursor"),
+            document.querySelector(".prev"),
+            document.querySelector(".next")
+        ];
+
+        const focusedElementIndex = interactiveElements.findIndex((element) => element === document.activeElement);
+        const nextFocusedElementIndex = focusedElementIndex === interactiveElements.length - 1 ? 0 : focusedElementIndex + 1;
+
+        interactiveElements[nextFocusedElementIndex].focus();
+    }
+}
+
+function handleEscapeKey(event) {
+    if (event.key === "Escape") {
+        closeLightboxModal();
+    }
+}
+
 export function openLightboxModal() {
+    previousActiveElement = document.activeElement;
+
     const body = document.querySelector("body");
-    document.getElementById("lightbox").style.display = "flex";
+    $lightbox.style.display = "flex";
     body.style.overflow = "hidden";
 
+    setInitialFocus();
+
     document.addEventListener("keydown", listenArrowKeys);
+    document.addEventListener("keydown", handleTabKey);
+    document.addEventListener("keydown", handleEscapeKey);
 
     listenLightboxEvent();
 }
@@ -77,10 +110,14 @@ function closeLightboxModal() {
     console.log("closeModal clicked");
 
     const body = document.querySelector("body");
-    document.getElementById("lightbox").style.display = "none";
+    $lightbox.style.display = "none";
     body.style.overflow = "auto";
 
     document.removeEventListener("keydown", listenArrowKeys);
+    document.removeEventListener("keydown", handleTabKey);
+    document.removeEventListener("keydown", handleEscapeKey);
+
+    previousActiveElement.focus();
 }
 
 function listenArrowKeys(event) {
