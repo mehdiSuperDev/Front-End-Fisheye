@@ -1,4 +1,4 @@
-function photographerFactory(data) {
+export function photographerFactory(data) {
     const {
         name,
         city,

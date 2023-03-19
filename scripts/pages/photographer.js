@@ -1,12 +1,3 @@
-// JSON
-// "id": 75902334,
-// "photographerId": 82,
-// "title": "Art Mine",
-// "image": "Art_Mine.jpg",
-// "likes": 75,
-// "date": "2019-11-25",
-// "price": 55
-
 import { initContactForm } from "../utils/contactForm.js";
 import { currentSlide, createSlides, openLightboxModal } from "./lightbox.js";
 import { sortMedia, listenMenuEvent } from "./mediaSort.js";
