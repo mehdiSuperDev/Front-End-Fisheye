@@ -1,3 +1,5 @@
+let previousActiveElementContact;
+
 export function initContactForm(name) {
     const modal_title = document.querySelector("header h2");
     modal_title.textContent = `Contactez-moi ${name}`;
@@ -5,25 +7,29 @@ export function initContactForm(name) {
 
 const body = document.querySelector("body");
 const form = document.querySelector("form");
+const contactModal = document.getElementById("contact_modal");
 
 form.addEventListener("submit", function(event) {
     event.preventDefault();
 })
 
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
+    previousActiveElementContact = document.activeElement;
+
+    contactModal.style.display = "block";
     body.style.overflow = "hidden";
+
+    contactModal.querySelector("input").focus(); // Mettre le focus sur le premier champ du formulaire
 }
 
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
+    contactModal.style.display = "none";
 
     body.style.overflow = "auto";
+
+    previousActiveElementContact.focus(); // Remettre le focus sur l'élément actif précédent
 }
 
-// Fonction pour récupérer les valeurs des champs et les afficher dans la console
 function handleFormSubmit(event) {
     event.preventDefault();
   
@@ -40,20 +46,43 @@ function handleFormSubmit(event) {
     closeModal();
 }
 
+function handleEscapeKeyContact(event) {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+}
+
+function handleTabKeyContact(event) {
+    if (event.key === "Tab") {
+        const focusableElements = contactModal.querySelectorAll(
+            'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]'
+        );
+        const firstFocusableElement = focusableElements[0];
+        const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstFocusableElement) {
+            event.preventDefault();
+            lastFocusableElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastFocusableElement) {
+            event.preventDefault();
+            firstFocusableElement.focus();
+        }
+    }
+}
+
 function setupEventListeners() {
     form.addEventListener("submit", function(event) {
       event.preventDefault();
     });
   
-    // Ajout d'un gestionnaire d'événements pour le bouton d'envoi
     document.querySelector(".send_button").addEventListener("click", handleFormSubmit);
   
-    // Ajout d'un gestionnaire d'événements pour le bouton "Contactez-moi"
     document.querySelector(".contact_button").addEventListener("click", displayModal);
 
-    // Ajout d'un gestionnaire d'événements pour la croix de la modale
     document.querySelector(".modal img").addEventListener("click", closeModal);
+
+    contactModal.addEventListener("keydown", handleEscapeKeyContact); // Ajout d'un écouteur d'événements pour fermer la modale avec la touche Échap
+    contactModal.addEventListener("keydown", handleTabKeyContact);
 }
   
-// Exécutez la fonction setupEventListeners lorsque le DOM est complètement chargé
 document.addEventListener("DOMContentLoaded", setupEventListeners);
