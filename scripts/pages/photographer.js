@@ -70,7 +70,6 @@ function mediaFactory(data) {
 
             img.addEventListener("click", function(event) {
                 console.log("click on image");
-                // slideIndex = lastIndex;
                 currentSlide(lastIndex);
                 openLightboxModal();
             });

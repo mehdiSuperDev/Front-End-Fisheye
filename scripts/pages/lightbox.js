@@ -44,6 +44,7 @@ export function createSlides(mediaElements) {
         const captionContainer = createCaptionContainer();
         const caption = document.createElement("p");
         caption.textContent = element.alt ?? element.title;
+        addLightboxTitle(caption.textContent);
         captionContainer.appendChild(caption);
 
         div.appendChild(element);
@@ -52,6 +53,11 @@ export function createSlides(mediaElements) {
         const lightboxContent = document.querySelector(".lightbox-content");
         lightboxContent.appendChild(div);
     }
+}
+
+function addLightboxTitle(title) {
+    const $title = document.getElementById("lightbox-title");
+    $title.textContent = title;
 }
 
 function listenLightboxEvent() {
