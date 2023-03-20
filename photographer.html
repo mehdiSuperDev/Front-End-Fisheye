@@ -8,7 +8,7 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header role="banner">
+    <header>
       <a href="index.html">
         <img src="assets/images/logo.png" class="logo" alt="Page d'accueil du site FishEye"/>
       </a>
@@ -20,13 +20,13 @@
           <p>Localisation</p>
           <p>Citation</p>
         </div>
-        <button class="contact_button">Contactez-moi</button>
+        <button class="contact_button" aria-label="Contactez-moi">Contactez-moi</button>
         <img src="assets/photographers/account.png" />
       </section>
       <section class="medias_section">
         <div class="medias_section__header">
-          <p>Trier par <i class="fa-solid fa-down"></i></p>
-          <select id="menu">
+          <p id="orderBy">Trier par <i class="fa-solid fa-down"></i></p>
+          <select id="menu" aria-labelledby="orderBy">
             <option value="popularité">Popularité</option>
             <option value="date">Date</option>
             <option value="titre">Titre</option>

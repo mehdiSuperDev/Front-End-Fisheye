@@ -59,7 +59,7 @@ function mediaFactory(data) {
         if (image != undefined) {
             const img = document.createElement("img");
             img.setAttribute("src", `assets/images/${image}`);
-            img.setAttribute("alt", title);
+            img.setAttribute("alt", `${title}, vue en gros plan`);
             img.setAttribute("role", "img");
 
             mediaElements.push(img.cloneNode(true));
@@ -78,6 +78,7 @@ function mediaFactory(data) {
             // créer l'élément video
             const video_e = document.createElement("video");
             video_e.setAttribute("src", `assets/images/${video}`);
+            video_e.setAttribute("alt", `${title}, vue en gros plan`);
             video_e.setAttribute("title", title);
 
             video_e.addEventListener("click", function(event) {
@@ -108,10 +109,11 @@ function mediaFactory(data) {
 
     function getMediaCardDOM() {
         const userCardDOM = document.createElement("article");
+
         userCardDOM.setAttribute("tabindex", 0);
         userCardDOM.setAttribute("aria-label", `${title}`);
-        userCardDOM.setAttribute("title", `${title}`);
 
+        userCardDOM.setAttribute("title", `${title}`);
         userCardDOM.setAttribute("date", date);
         userCardDOM.setAttribute("likes", likes);
 
@@ -126,6 +128,7 @@ function mediaFactory(data) {
 
         const b_likes = document.createElement("button");
         b_likes.classList.add("button_like");
+        b_likes.setAttribute("aria-label", "likes");
         b_likes.textContent = `${likes} ❤️`;
 
         let isLiked = false;
