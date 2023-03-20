@@ -55,11 +55,11 @@ function mediaFactory(data) {
         date,
     } = data;
 
-    function getMediaElement() {
+    function mediaElementFactory() {
         if (image != undefined) {
             const img = document.createElement("img");
             img.setAttribute("src", `assets/images/${image}`);
-            img.setAttribute("alt", `${title}, vue en gros plan`);
+            img.setAttribute("alt", `${title}`);
             img.setAttribute("role", "img");
 
             img.setAttribute("tabindex", 0);
@@ -79,7 +79,7 @@ function mediaFactory(data) {
             // créer l'élément video
             const video_e = document.createElement("video");
             video_e.setAttribute("src", `assets/images/${video}`);
-            video_e.setAttribute("alt", `${title}, vue en gros plan`);
+            video_e.setAttribute("alt", `${title}`);
             video_e.setAttribute("title", title);
 
             video_e.setAttribute("tabindex", 0);
@@ -120,8 +120,8 @@ function mediaFactory(data) {
         userCardDOM.setAttribute("date", date);
         userCardDOM.setAttribute("likes", likes);
 
-        // recuperer element renvoyer par la fonction getMediaElement
-        const mediaElement = getMediaElement();
+        // recuperer element renvoyer par la fonction mediaElementFactory
+        const mediaElement = mediaElementFactory();
 
         const sectionFooter = document.createElement("div");
         sectionFooter.setAttribute("class", "medias_section__footer");
