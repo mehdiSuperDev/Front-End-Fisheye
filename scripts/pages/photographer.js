@@ -62,6 +62,8 @@ function mediaFactory(data) {
             img.setAttribute("alt", `${title}, vue en gros plan`);
             img.setAttribute("role", "img");
 
+            img.setAttribute("tabindex", 0);
+
             mediaElements.push(img.cloneNode(true));
             //recuperer l'index du dernier element
             const lastIndex = mediaElements.length - 1;
@@ -80,6 +82,8 @@ function mediaFactory(data) {
             video_e.setAttribute("src", `assets/images/${video}`);
             video_e.setAttribute("alt", `${title}, vue en gros plan`);
             video_e.setAttribute("title", title);
+
+            video_e.setAttribute("tabindex", 0);
 
             video_e.addEventListener("click", function(event) {
                 console.log("video on image");
