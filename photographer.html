@@ -39,39 +39,42 @@
       </section>
     </main>
 
-    <!-- Modal -->
+  <!-- Modal -->
   <div id="contact_modal" role="dialog" aria-labelledby="contact_title" aria-describedby="contact_description">
     <div class="modal">
         <header>
+            <h1 class="visually-hidden">Contact me Mimi Keel</h1>
             <h2 id="contact_title">Contactez-moi</h2>
-            <img src="assets/icons/close.svg" alt="Fermer" tabindex="0" />
+            <button class="close_button" aria-label="Close Contact form">
+              <img src="assets/icons/close.svg" alt="Fermer" />
+            </button>
         </header>
         <form>
             <div id="contact_description">
-                <label for="surname">Prénom</label>
-                <input type="text" id="surname" name="surname" required aria-required="true">
+                <label id="label_firstname" for="surname">Prénom</label>
+                <input type="text" id="surname" name="surname" required aria-required="true" aria-labelledby="label_firstname">
 
-                <label for="name">Nom</label>
-                <input type="text" id="name" name="name" required aria-required="true">
+                <label id="label_lastname" for="name">Nom</label>
+                <input type="text" id="name" name="name" required aria-required="true" aria-labelledby="label_lastname">
                 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required aria-required="true">
+                <label id="label_email" for="email">Email</label>
+                <input type="email" id="email" name="email" required aria-required="true" aria-labelledby="label_email">
                 
-                <label for="message">Votre message</label>
-                <textarea id="message" name="message" required aria-required="true"></textarea>
+                <label id="label_message" for="message">Votre message</label>
+                <textarea id="message" name="message" required aria-required="true" aria-labelledby="label_message"></textarea>
             </div>
             <button class="send_button" type="submit">Envoyer</button>
         </form>
     </div>
-  </div>
+    </div>
 
     <!-- LightBox -->
-    <div id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" tabindex="-1">
-      <span class="close cursor" tabindex="0" aria-label="Fermer">&times;</span>
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="image en gros plan" aria-labelledby="lightbox-title" tabindex="-1">
+      <span class="close cursor" tabindex="0" aria-label="Fermer la boite de dialogue">&times;</span>
       <div class="lightbox-content">
       </div>
-      <button class="prev" tabindex="0" aria-label="Image précédente">&#10094;</button> <!-- Modifié -->
-      <button class="next" tabindex="0" aria-label="Image suivante">&#10095;</button> <!-- Modifié -->
+      <button class="prev" tabindex="0" aria-label="Image précédente">&#10094;</button>
+      <button class="next" tabindex="0" aria-label="Image suivante">&#10095;</button>
     </div>
     <script type="module" src="/scripts/pages/lightbox.js"></script>
     <script type="module" src="/scripts/pages/photographer.js"></script>

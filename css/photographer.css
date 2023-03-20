@@ -143,6 +143,10 @@
 
 /* Modal */
 
+.visually-hidden {
+    display: none;
+}
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -212,8 +216,6 @@ form input {
 
 /* LightBOX */
 
-
-/* Close button REPETITIF */
 .close {
     position: absolute;
     top:10px;
