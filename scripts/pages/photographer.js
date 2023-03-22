@@ -37,7 +37,7 @@ function fillMediaSectionInsert(medias) {
     const mediaSectionInsert = document.querySelector(".medias_section__insert");
     const likes = document.createElement("p");
     likes.classList.add("likesElement");
-    likes.textContent = `${totalLikesMedia} 🖤`;
+    likes.textContent = `${totalLikesMedia} ❤️`;
 
     const priceElement = document.createElement("p");
     priceElement.textContent = `${price}€/ jour`;
