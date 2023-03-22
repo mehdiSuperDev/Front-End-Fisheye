@@ -182,9 +182,11 @@ async function init() {
 
     const medias = await getMedias(photographers[index].id);
 
-    sortMedia("popularité");
+
 
     displayMedias(medias);
+    sortMedia("popularité");
+
     fillMediaSectionInsert(medias);
 
     listenMenuEvent();
